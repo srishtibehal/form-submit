@@ -6,11 +6,10 @@ if(isset($_GET["submit-btn"])) {
     if ($_GET["fullname"]) {
         $fn = $_GET["fullname"];
     } else{
-        $err = "Please write your name";
+        $err = "Your Name?";
     }
-}
 
-    if($_GET["email"]) {
+    if(isset($_GET["email"])) {
         if (filter_var($_GET["email"], FILTER_VALIDATE_EMAIL)) {
             $em = $_GET["email"];
         } else {
@@ -18,14 +17,19 @@ if(isset($_GET["submit-btn"])) {
         }
         
     } else {
-        $err = "Please enter your email!";
+        $err .= "Email?";
     }
     
+    if(isset($GET["message"])) {
+        $m = $_GET["message"];
+    } else{
+        $err .= "Message?";
+    }
     if (!empty($em)) {
         $success = true;
         $display = "Thank you for your email. We will reply soon at $em";
     }
-
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,21 +47,19 @@ if(isset($_GET["submit-btn"])) {
                   <legend>Full name</legend>
                    <label>Full name</label>
                     <input type="text" name="fullname"
-                           placeholder="Your name"required/>
+                           placeholder="Your name">
                            <br>
                            <br>
                            <label>Email</label>
                     <input type="text" name="email"
-                           placeholder="Email"required/>
+                           placeholder="Email">
                            <br>
                            <br>
                         <p>
                            <label>Text-Area</label>
                            <br>
                            <br>
-                            <textarea placeholder = "Write your message here.."
-                                      maxlength = "160"
-                                      data-counter-label = "{remaining} characters left to type">
+                            <textarea name = "message" placeholder = "Write your message here..">
                             </textarea>
                         </p>
                     <input type="Submit" name="submit-btn" value="submit"> 
